@@ -8,9 +8,9 @@ if [ $command == chat ]
 then
 	if [ -z $ign ]
 	then
-		cat $logfile | sed 's/^.*] //g' | grep '^.*: ' | sed "s/^$ign: //g" | grep -v ^.*:\ /
+		cat $logfile | sed 's/^.*] //g' | grep "^.*: " | grep -v ^.*:\ / | sed 's/^.*: //g'
 	else
-		cat $logfile | sed 's/^.*] //g' | grep '^$ign: ' | grep -v ^.*:\ /
+		cat $logfile | sed 's/^.*] //g' | grep "^$ign: " | grep -v ^.*:\ / | sed 's/^.*: //g'
 	fi
 fi
 
@@ -21,7 +21,12 @@ fi
 
 if [ $command == commands ]
 then
-	cat $logfile | sed 's/^.*] //g' | grep ^$ign: | sed "s/^$ign: //g" | grep ^/
+	if [ -z $ign ]
+	then
+		cat $logfile | sed 's/^.*] //g' | grep ^.*: | grep '^.*: /'
+	else
+		cat $logfile | sed 's/^.*] //g' | grep ^$ign: | sed "s/^$ign: //g" | grep ^/
+	fi
 fi
 
 if [ $command == servernames ]
@@ -36,6 +41,6 @@ then
 	then
 		cat $logfile | sed 's/^.*] //g' | grep '^.*: ' | sed "s/^$ign: //g"
 	else
-		cat $logfile | sed 's/^.*] //g' | grep '^$ign: '
+		cat $logfile | sed 's/^.*] //g' | grep "^$ign: " | sed 's/^.*: //g'
 	fi
 fi
