@@ -44,3 +44,8 @@ then
 		cat $logfile | sed 's/^.*] //g' | grep "^$ign: " | sed 's/^.*: //g'
 	fi
 fi
+
+if [ $command == deadbhs ]
+then
+	cat $logfile | grep '] Blockhead died named .* owned by player.*.' | sed 's/^.*] Blockhead died named //g' | sed 's/player //g'
+fi
