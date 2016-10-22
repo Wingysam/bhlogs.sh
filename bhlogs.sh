@@ -8,7 +8,7 @@ if [ $command == chat ]
 then
 	if [ -z $ign ]
 	then
-		cat $logfile | sed 's/^.*] //g' | grep "^.*: " | grep -v ^.*:\ / | sed 's/^.*: //g'
+		cat $logfile | sed 's/^.*] //g' | grep "^.*: " | grep -v ^.*:\ /
 	else
 		cat $logfile | sed 's/^.*] //g' | grep "^$ign: " | grep -v ^.*:\ / | sed 's/^.*: //g'
 	fi
